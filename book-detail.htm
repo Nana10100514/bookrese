@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <meta name="theme-color" content="#f7f6f2">
+
+  <title>
+    購入した本｜本屋にも、次回予約を。
+  </title>
+
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <main class="app-shell detail-page">
+    <nav
+      class="detail-nav"
+      aria-label="ページ移動"
+    >
+      <a
+        href="./index.htm"
+        aria-label="購入した本の一覧に戻る"
+      >
+        <span aria-hidden="true">
+          &#8592;
+        </span>
+
+        本棚に戻る
+      </a>
+    </nav>
+
+    <header class="detail-intro">
+      <p class="detail-kicker">
+        <span id="bookIndex">
+          01 / 04
+        </span>
+      </p>
+    </header>
+
+    <section
+      class="detail-feature"
+      aria-labelledby="detailTitle"
+    >
+      <div class="detail-cover-stage">
+        <span
+          class="detail-cover-number"
+          id="coverNumber"
+          aria-hidden="true"
+        >
+          1
+        </span>
+
+        <div
+          class="detail-cover cover-indigo"
+          id="detailCover"
+        >
+          <img
+            id="detailImage"
+            src="./assets/books/book-01.jpg"
+            alt="四畳半神話大系の表紙"
+          >
+
+          <span
+            class="cover-placeholder"
+            id="detailFallback"
+          >
+            四畳半神話大系
+          </span>
+        </div>
+      </div>
+
+      <div class="detail-book-heading">
+        <h2 id="detailTitle">
+          『四畳半神話大系』
+        </h2>
+
+        <span id="detailAuthor">
+          森見登美彦
+        </span>
+      </div>
+    </section>
+
+    <section
+      class="detail-record"
+      aria-label="購入日と次回予約日"
+    >
+      <div class="detail-date-grid">
+        <div class="detail-date-card">
+          <span class="detail-date-label">
+            購入日
+          </span>
+
+          <strong id="purchaseDate">
+            9月6日
+          </strong>
+        </div>
+
+        <div class="detail-date-card detail-date-card-dark">
+          <span class="detail-date-label">
+            次回予約日
+          </span>
+
+          <strong id="bookedDate">
+            9月6日
+          </strong>
+        </div>
+      </div>
+    </section>
+
+    <div class="detail-next">
+      <a
+        class="pill-button"
+        href="./reservation.htm"
+      >
+        次回予約をする
+      </a>
+    </div>
+
+    <a
+      class="detail-other"
+      id="otherBook"
+      href="./book-detail.htm?book=2"
+    >
+      <span>
+        ほかの購入した本を見る
+      </span>
+
+      <strong id="otherBookTitle">
+        夜は短し恋せよ乙女
+      </strong>
+    </a>
+  </main>
+
+  <script src="./book-detail.js"></script>
+</body>
+</html>

@@ -1,0 +1,1078 @@
+:root {
+  color-scheme: light;
+
+  --ink: #282525;
+  --charcoal: #3d3a39;
+  --paper: #f7f6f2;
+  --soft-white: rgba(255, 255, 255, 0.82);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #deddd9;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: var(--ink);
+  font-family:
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    system-ui,
+    sans-serif;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.app-shell {
+  width: min(100%, 430px);
+  min-height: 100svh;
+  margin: 0 auto;
+  padding-bottom: max(
+    34px,
+    env(safe-area-inset-bottom)
+  );
+
+  overflow-x: hidden;
+
+  background:
+    radial-gradient(
+      ellipse at 18% 16%,
+      rgba(92, 84, 72, 0.06),
+      transparent 28%
+    ),
+    radial-gradient(
+      ellipse at 75% 72%,
+      rgba(92, 84, 72, 0.045),
+      transparent 31%
+    ),
+    repeating-linear-gradient(
+      88deg,
+      rgba(62, 57, 51, 0.018) 0 1px,
+      transparent 1px 7px
+    ),
+    var(--paper);
+
+  box-shadow:
+    0 0 44px rgba(30, 28, 26, 0.14);
+}
+
+/* 共通ボタン */
+
+.pill-button {
+  display: inline-flex;
+  width: min(100%, 300px);
+  min-height: 50px;
+  padding: 10px 24px;
+  align-items: center;
+  justify-content: center;
+
+  border: 0;
+  border-radius: 999px;
+
+  color: #ffffff;
+  background: var(--charcoal);
+
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-decoration: none;
+
+  box-shadow:
+    0 8px 18px rgba(33, 30, 28, 0.15);
+
+  cursor: pointer;
+}
+
+.pill-button:active {
+  transform: translateY(1px);
+}
+
+.pill-button:focus-visible,
+.back-circle:focus-visible {
+  outline: 3px solid #aaa19a;
+  outline-offset: 3px;
+}
+
+/* 共通見出し */
+
+.section-label {
+  display: inline-flex;
+  min-height: 40px;
+  margin: 0;
+  padding: 8px 15px;
+  align-items: center;
+
+  border-radius: 9px;
+
+  color: #ffffff;
+  background: var(--charcoal);
+
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* トップのロゴ */
+
+.hero {
+  position: relative;
+  min-height: 152px;
+  display: grid;
+  align-items: center;
+
+  padding:
+    max(22px, env(safe-area-inset-top))
+    20px
+    18px;
+}
+
+.campaign-logo {
+  display: block;
+  width: min(77%, 300px);
+  max-height: 114px;
+
+  object-fit: contain;
+  object-position: left center;
+}
+
+.logo-placeholder {
+  margin: 0;
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size: 1.65rem;
+  line-height: 1.6;
+  letter-spacing: 0.06em;
+}
+
+/* 購入した本 */
+
+.books-section {
+  padding-bottom: 0;
+}
+
+.books-section .section-label {
+  margin: 0 19px 15px;
+}
+
+.books-strip {
+  padding: 12px 0 28px;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.book-slider {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(142px, 44vw);
+  gap: 12px;
+
+  overflow-x: auto;
+
+  padding: 8px 13px 14px;
+
+  scroll-padding-inline: 13px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+.book-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.book-card {
+  margin: 0;
+  scroll-snap-align: start;
+
+  color: inherit;
+  text-decoration: none;
+}
+
+.book-card:focus-visible {
+  outline: 3px solid var(--charcoal);
+  outline-offset: 3px;
+}
+
+.book-card p {
+  margin: 8px 3px 0;
+  overflow: hidden;
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size: 0.84rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 本の表紙 */
+
+.cover,
+.recommend-cover {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 2 / 3;
+
+  background: #e8e2d6;
+
+  box-shadow:
+    0 8px 18px rgba(39, 35, 31, 0.13);
+}
+
+.cover img,
+.recommend-cover img {
+  position: relative;
+  z-index: 2;
+
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.cover-placeholder {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  display: grid;
+  place-items: center;
+
+  padding: 14px;
+
+  color: rgba(255, 255, 255, 0.88);
+
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.6;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+.cover-indigo {
+  background:
+    linear-gradient(
+      145deg,
+      #171525,
+      #3e2f68 58%,
+      #9b77ae
+    );
+}
+
+.cover-red {
+  background:
+    linear-gradient(
+      #56040a,
+      #d33a18 56%,
+      #efae3a
+    );
+}
+
+.cover-blue {
+  background:
+    linear-gradient(
+      155deg,
+      #2c4058,
+      #9aa9ad 55%,
+      #ded3c6
+    );
+}
+
+.cover-cream {
+  background:
+    linear-gradient(
+      135deg,
+      #d8c9a3,
+      #eee3c3 52%,
+      #c6b587
+    );
+}
+
+/* スライダーの丸 */
+
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding-top: 3px;
+}
+
+.slider-dots span {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+  background: #c4c0ba;
+
+  transition:
+    width 180ms ease,
+    background 180ms ease;
+}
+
+.slider-dots span.is-active {
+  width: 18px;
+  border-radius: 5px;
+  background: var(--charcoal);
+}
+
+/* 日付ルーレット */
+
+.date-section,
+.recommend-section {
+  padding: 20px 19px 0;
+}
+
+.wheel-guide {
+  margin: 9px 2px 10px;
+  color: #76716e;
+  font-size: 0.78rem;
+}
+
+.date-wheel-wrap {
+  position: relative;
+  height: 162px;
+  margin-top: 4px;
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.date-wheel {
+  height: 100%;
+  overflow: hidden;
+  padding-block: 54px;
+  pointer-events: none;
+}
+
+.date-option {
+  width: 100%;
+  height: 54px;
+
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  align-items: center;
+
+  border: 0;
+  padding: 0 31px;
+
+  color: #a29d99;
+  background: transparent;
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size: 1.45rem;
+  text-align: center;
+
+  transform: scale(0.82);
+  opacity: 0.38;
+
+  transition:
+    transform 140ms ease,
+    opacity 140ms ease,
+    color 140ms ease;
+}
+
+.date-option.is-selected {
+  color: #211d1c;
+  font-size: 2.05rem;
+
+  transform: scale(1);
+  opacity: 1;
+}
+
+.date-option span:nth-child(1)::after {
+  content: "月";
+  margin-left: 0.12em;
+  font-size: 0.58em;
+}
+
+.date-option span:nth-child(2)::after {
+  content: "日";
+  margin-left: 0.12em;
+  font-size: 0.58em;
+}
+
+.date-option span:nth-child(3)::before {
+  content: "（";
+}
+
+.date-option span:nth-child(3)::after {
+  content: "）";
+}
+
+.wheel-focus {
+  position: absolute;
+  top: 54px;
+  right: 15px;
+  left: 15px;
+  height: 54px;
+
+  border-top:
+    1px solid rgba(65, 60, 55, 0.12);
+
+  border-bottom:
+    1px solid rgba(65, 60, 55, 0.12);
+
+  pointer-events: none;
+}
+
+.booking-action {
+  display: grid;
+  justify-items: center;
+  padding: 18px 19px 5px;
+}
+
+/* おすすめの本 */
+
+.recommend-section {
+  padding-bottom: 20px;
+}
+
+.recommend-card {
+  display: grid;
+  justify-items: center;
+  margin-top: 21px;
+}
+
+.recommend-cover {
+  width: min(64vw, 224px);
+}
+
+.recommend-card h3 {
+  margin: 14px 0 9px;
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.recommend-card h3 small {
+  margin-left: 0.55em;
+  font-size: 0.76em;
+}
+
+blockquote {
+  width: 100%;
+  margin: 0;
+  padding: 9px 12px;
+
+  color: #373230;
+  background: var(--soft-white);
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size: 0.74rem;
+  line-height: 1.7;
+}
+
+.search-button {
+  width: min(100%, 300px);
+  min-height: 50px;
+
+  display: flex;
+  margin: 38px auto 0;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  border: 0;
+  border-radius: 999px;
+
+  color: #ffffff;
+  background: var(--charcoal);
+
+  font-size: 1rem;
+  font-weight: 700;
+
+  box-shadow:
+    0 9px 18px rgba(33, 30, 28, 0.17);
+
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.search-button:active {
+  transform: translateY(1px);
+}
+
+.search-icon {
+  width: 24px;
+  height: 24px;
+
+  overflow: visible;
+
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 2;
+}
+
+/* 本の詳細ページ */
+
+.detail-page {
+  padding-top: 0;
+  overflow: hidden;
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+}
+
+.detail-nav {
+  display: flex;
+  height: 72px;
+
+  padding:
+    max(16px, env(safe-area-inset-top))
+    25px
+    0;
+
+  align-items: center;
+
+  border-bottom:
+    1px solid rgba(49, 43, 39, 0.13);
+
+  font-family:
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    sans-serif;
+}
+
+.detail-nav a {
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.detail-nav a span {
+  margin-right: 8px;
+  font-size: 1.5rem;
+  vertical-align: -0.1em;
+}
+
+.detail-intro {
+  padding: 18px 25px 12px;
+}
+
+.detail-kicker {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0;
+
+  color: #706a65;
+
+  font-family:
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    sans-serif;
+
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+}
+
+.detail-kicker span {
+  font-family: Georgia, serif;
+}
+
+.detail-feature {
+  padding-bottom: 29px;
+}
+
+.detail-cover-stage {
+  position: relative;
+
+  display: grid;
+  min-height: 365px;
+  place-items: center;
+
+  background: #eae6dd;
+}
+
+.detail-cover-stage::before,
+.detail-cover-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.detail-cover-stage::before {
+  background:
+    repeating-linear-gradient(
+      95deg,
+      transparent 0 8px,
+      rgba(255, 255, 255, 0.18) 9px 10px
+    );
+}
+
+.detail-cover-stage::after {
+  inset: 12px;
+  border:
+    1px solid rgba(64, 56, 49, 0.14);
+}
+
+.detail-cover-number {
+  position: absolute;
+  top: 28px;
+  left: 20px;
+
+  color: rgba(255, 255, 255, 0.54);
+
+  font:
+    700 250px/1
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    sans-serif;
+}
+
+.detail-cover {
+  position: relative;
+  z-index: 1;
+
+  width: min(57%, 230px);
+  aspect-ratio: 2 / 2.8;
+  overflow: hidden;
+
+  box-shadow:
+    12px 17px 24px rgba(35, 29, 25, 0.27),
+    -2px 0 1px rgba(255, 255, 255, 0.5);
+
+  transform: rotate(-3deg);
+}
+
+.detail-cover img {
+  position: relative;
+  z-index: 2;
+
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.detail-book-heading {
+  padding: 27px 26px 0;
+}
+
+.detail-book-heading h2 {
+  margin: 0 0 5px;
+
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+}
+
+.detail-book-heading > span {
+  color: #6c655e;
+  font-size: 0.9rem;
+}
+
+.detail-record {
+  padding: 25px 25px 18px;
+
+  border-top:
+    1px solid rgba(49, 43, 39, 0.15);
+}
+
+.detail-date-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.detail-date-card {
+  min-width: 0;
+  min-height: 134px;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 15px 12px 16px;
+
+  border: 1px solid #e9e5df;
+  background: #ffffff;
+}
+
+.detail-date-card-dark {
+  color: #ffffff;
+  border-color: #312d2a;
+  background: #312d2a;
+}
+
+.detail-date-label {
+  font-family:
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    sans-serif;
+
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.detail-date-card strong {
+  margin: auto 0 0;
+
+  font-size: clamp(1.55rem, 7vw, 2.2rem);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.detail-next {
+  margin: 0 15px;
+  padding: 30px 20px;
+
+  background: #e9e3d9;
+  text-align: center;
+}
+
+.detail-next .pill-button {
+  width: min(100%, 280px);
+  margin: 0 auto;
+}
+
+.detail-other {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+
+  margin: 28px 25px 0;
+  padding: 18px 0;
+
+  border-top: 1px solid #cfc8c0;
+  border-bottom: 1px solid #cfc8c0;
+
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.detail-other span {
+  color: #716b66;
+  font-size: 0.76rem;
+}
+
+.detail-other strong {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: right;
+}
+
+/* 予約ページ */
+
+.reservation-page {
+  min-height: 100svh;
+
+  padding:
+    max(30px, env(safe-area-inset-top))
+    0
+    48px;
+}
+
+.back-circle {
+  display: grid;
+  width: 78px;
+  height: 78px;
+
+  margin: 0 0 30px 25px;
+  place-items: center;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+  background: #171111;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+}
+
+.reservation-heading {
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+
+  margin: 0 25px 38px;
+}
+
+.reservation-logo {
+  display: block;
+  width: min(78%, 280px);
+  max-height: 110px;
+
+  object-fit: contain;
+  object-position: left center;
+}
+
+.reservation-logo-fallback {
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size: 1.45rem;
+  line-height: 1.6;
+  letter-spacing: 0.06em;
+}
+
+.reservation-panel {
+  margin: 0 19px 38px;
+}
+
+.reservation-panel .section-label {
+  display: flex;
+  width: fit-content;
+  margin-bottom: 18px;
+}
+
+#visitDate,
+#bookChoice {
+  width: 100%;
+
+  border: 1px solid #d3cfca;
+  border-radius: 0;
+
+  padding: 12px 14px;
+
+  color: #282525;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+#visitDate {
+  min-height: 64px;
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size: 1.35rem;
+}
+
+.booking-book {
+  display: grid;
+  grid-template-columns: 115px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.booking-book-cover {
+  position: relative;
+
+  width: 115px;
+  overflow: hidden;
+  aspect-ratio: 2 / 3;
+
+  background: #29213d;
+
+  box-shadow:
+    0 8px 18px rgba(39, 35, 31, 0.16);
+}
+
+.booking-book-cover img {
+  position: relative;
+  z-index: 2;
+
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.booking-book-info {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  padding-top: 3px;
+}
+
+.booking-book-info strong {
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size: 1.05rem;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.booking-book-info > span {
+  color: #665f5a;
+  font-size: 0.86rem;
+}
+
+.input-caption {
+  margin-top: 15px;
+
+  color: #4d4742;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+#bookChoice {
+  min-height: 48px;
+  font-size: 0.82rem;
+}
+
+.reservation-submit-wrap {
+  display: grid;
+  justify-items: center;
+
+  margin: 46px 19px 0;
+}
+
+.reservation-submit-wrap .pill-button {
+  width: 100%;
+}
+
+/* 予約完了画面 */
+
+.confirmation {
+  width: auto;
+  margin: 45px 20px 0;
+  padding: 20px 0 0;
+
+  overflow: hidden;
+  text-align: center;
+}
+
+.confirmation-mark {
+  display: block;
+  margin-bottom: 22px;
+
+  color: #282525;
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size: 3.2rem;
+  line-height: 1;
+}
+
+.confirmation h2 {
+  max-width: 100%;
+  margin: 0 0 22px;
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size: 1.55rem;
+  font-weight: 500;
+  line-height: 1.6;
+
+  overflow-wrap: anywhere;
+}
+
+.confirmation p {
+  max-width: 100%;
+  margin: 0 auto;
+
+  color: #403a37;
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size: 0.95rem;
+  line-height: 2;
+
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.confirmation .pill-button {
+  margin: 34px auto 0;
+}
+
+@media (max-width: 350px) {
+  .section-label {
+    font-size: 0.9rem;
+  }
+
+  .book-slider {
+    grid-auto-columns: 136px;
+  }
+
+  .date-option {
+    padding-inline: 19px;
+  }
+
+  .booking-book {
+    grid-template-columns: 95px minmax(0, 1fr);
+    gap: 13px;
+  }
+
+  .booking-book-cover {
+    width: 95px;
+  }
+
+  .booking-book-info strong {
+    font-size: 0.92rem;
+  }
+
+  .detail-date-card strong {
+    font-size: 1.45rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

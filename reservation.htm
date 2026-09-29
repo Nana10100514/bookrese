@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <meta name="theme-color" content="#f7f6f2">
+
+  <title>
+    次回予約｜本屋にも、次回予約を。
+  </title>
+
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <main class="app-shell reservation-page">
+    <a
+      class="back-circle"
+      href="./index.htm"
+      aria-label="トップページに戻る"
+    >
+      BACK
+    </a>
+
+    <header class="reservation-heading">
+      <img
+        class="reservation-logo"
+        id="reservationLogo"
+        src="./assets/logo.png"
+        alt="本屋にも、次回予約を。"
+      >
+
+      <span
+        class="reservation-logo-fallback"
+        id="reservationLogoFallback"
+        hidden
+      >
+        本屋にも、次回予約を。
+      </span>
+    </header>
+
+    <form id="reservationForm">
+      <section class="reservation-panel">
+        <label
+          class="section-label"
+          for="visitDate"
+        >
+          次に本屋へ行く日
+        </label>
+
+        <input
+          id="visitDate"
+          name="visitDate"
+          type="date"
+          required
+        >
+      </section>
+
+      <section class="reservation-panel">
+        <label
+          class="section-label"
+          for="bookChoice"
+        >
+          予約する本
+        </label>
+
+        <div class="booking-book">
+          <div
+            class="booking-book-cover cover-indigo"
+            id="bookingCoverWrap"
+          >
+            <img
+              id="bookingCover"
+              src="./assets/books/reserve-01.jpg"
+              alt="イン・ザ・メガチャーチの表紙"
+            >
+
+            <span
+              class="cover-placeholder"
+              id="bookingFallback"
+            >
+              イン・ザ・メガチャーチ
+            </span>
+          </div>
+
+          <div class="booking-book-info">
+            <strong id="bookingTitle">
+              『イン・ザ・メガチャーチ』
+            </strong>
+
+            <span id="bookingAuthor">
+              朝井リョウ
+            </span>
+
+            <label
+              class="input-caption"
+              for="bookChoice"
+            >
+              本を選ぶ
+            </label>
+
+            <select
+              id="bookChoice"
+              name="bookChoice"
+            >
+              <option value="イン・ザ・メガチャーチ">
+                イン・ザ・メガチャーチ
+              </option>
+
+              <option value="熟柿">
+                熟柿
+              </option>
+
+              <option value="PRIZE―プライズ―">
+                PRIZE―プライズ―
+              </option>
+
+              <option value="カフネ">
+                カフネ
+              </option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <div class="reservation-submit-wrap">
+        <button
+          class="pill-button"
+          type="submit"
+        >
+          この内容で予約する
+        </button>
+      </div>
+    </form>
+
+    <section
+      class="confirmation"
+      id="confirmation"
+      hidden
+      aria-live="polite"
+    >
+      <span
+        class="confirmation-mark"
+        aria-hidden="true"
+      >
+        &#10022;
+      </span>
+
+      <h2>
+        次回予約が決まりました。
+      </h2>
+
+      <p id="confirmationText"></p>
+
+      <a
+        class="pill-button"
+        href="./index.htm"
+      >
+        トップに戻る
+      </a>
+    </section>
+  </main>
+
+  <script src="./reservation.js"></script>
+</body>
+</html>
